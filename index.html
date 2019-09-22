@@ -61,7 +61,7 @@
                     <form onsubmit="" method="POST">
 
                         <div class="form-group">
-                            <select class="form-control" id="requestType" required>
+                            <select class="form-control" id="requestType" onchange="fetchOptions()" required>
                                 <option value="" disabled selected>How can we help you?</option>
                                 <option value="hardware">I need new hardware</option>
                                 <option value="software">I need new software</option>
@@ -137,6 +137,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- Sidebar JS -->
     <script type="text/javascript" src="assets/js/sidebar.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 
 </html>
