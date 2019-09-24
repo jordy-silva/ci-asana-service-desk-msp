@@ -37,9 +37,9 @@
         <div>
             <form>
                 <input type="text" name="personalAccessToken" id="pat" class="form-control form-control-custom"
-                    placeholder="Asana Personal Access Token" required />
+                    placeholder="Asana Personal Access Token" oninput="savePreferences(event)" required />
                 <input type="text" name="projectID" id="projectID" class="form-control form-control-custom"
-                    placeholder="Target Project ID" required />
+                    placeholder="Target Project ID" oninput="savePreferences(event)" required />
             </form>
         </div>
     </section>
@@ -117,7 +117,8 @@
     </section>
 
     <!-- Page footer -->
-    <footer class="container"></footer>
+    <footer class="container">
+    </footer>
 
     <!-- Overlay for sidebar -->
     <div class="overlay"></div>
