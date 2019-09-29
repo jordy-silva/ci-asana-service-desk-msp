@@ -4,7 +4,7 @@ function fetchOptions(event) {
     var softwareOptions = ["What software do yo need?", "LucidCharts", "Tableau Desktop", "Excel"];
     var selectedOption = $('#requestType').val();
 
-    if (selectedOption == 'hardware') {
+    if (selectedOption == 'Hardware') {
         options = hardwareOptions;
     } else {
         options = softwareOptions;
@@ -20,6 +20,10 @@ function fetchOptions(event) {
         }
     });
 }
+// LOAD OPTIONS NOT HARDCODED BUT JSON FILE
+// DOCUMENT IN README THAT THIS IS SPECIFIC FOR ONE QUEUE
+// USE TOOLTIP TO PREFERENCES
+// ADD 3RD DROPDOWN. SECOND CATEGORIES
 
 // Check if Web Storage is supported and fetch previously stored values if any
 if (typeof (Storage) !== "undefined") {
@@ -43,4 +47,56 @@ if (typeof (Storage) !== "undefined") {
 function savePreferences(event) {
     var formField = event.target.id;
     localStorage.setItem(formField, $('#' + formField).val());
+}
+
+// Calculate due date based on selected priority
+function setDueDate(priority) {
+    var date = new Date();
+    if (priority == "High") {
+        date.setDate(date.getDate() + 1);
+    } else if (priority == "Medium") {
+        date.setDate(date.getDate() + 10);
+    } else {
+        date.setDate(date.getDate() + 30);
+    }
+    date = date.toISOString().substr(0, 10);
+    return date;
+}
+
+// Create Asana Task
+function createAsanaTask() {
+    var dueDate = setDueDate($('input[name=urgency]:checked').val());
+
+    const client = Asana.Client.create().useAccessToken($('#pat').val());
+
+    client.users.me().then(function (me) {
+        var asanaWorkspace = me.workspaces[0].gid;
+
+        var body = "<body><strong>Requester: </strong>" + $('#emailaddress').val()
+            + "\n\n<strong>" + $('#requestType').find(":selected").val()
+            + " requested: </strong>" + $('#whatIsNeeded').find(":selected").val()
+            + "\n\n<strong>Urgency selected by requester: </strong>" + $('input[name=urgency]:checked').val() + "</body>";
+
+        var newTask = {
+            name: $('#requestType').find(":selected").val() + " request",
+            projects: [$('#projectID').val()],
+            html_notes: body,
+            due_on: dueDate
+        };
+
+        client.tasks.createInWorkspace(asanaWorkspace, newTask).then(function (response) {
+            alert('Submitted');
+            $("#asanaForm").trigger("reset");
+            $('#whatIsNeeded').empty();
+        }, function (error) {
+            console.log("Error " + error.status + " creating the Asana task");
+            console.log(error.message);
+            console.log(error);
+        });
+        
+    }, function (error) {
+        console.log("Error Connecting")
+        console.log(error);
+    });
+    return false;
 }
