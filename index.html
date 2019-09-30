@@ -20,6 +20,9 @@
     <!-- Font Awesome JS -->
     <script src="https://kit.fontawesome.com/8d7193c60e.js" crossorigin="anonymous"></script>
 
+    <!-- App config file -->
+    <script src="assets/js/config.js"></script>
+
 </head>
 
 <body>
@@ -61,10 +64,15 @@
                     <form id="asanaForm" onsubmit="return createAsanaTask()">
 
                         <div class="form-group">
-                            <select class="form-control" id="requestType" onchange="fetchOptions()" required>
+                            <select class="form-control" id="requestType" onchange="fetchOptions(event)" required>
                                 <option value="" disabled selected>How can we help you?</option>
                                 <option value="Hardware">I need new hardware</option>
                                 <option value="Software">I need new software</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" id="requestCategory" onchange="fetchOptions(event)" required>
                             </select>
                         </div>
 
@@ -134,11 +142,10 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- Asana API JS-->
-    <script type="text/javascript"
-        src="https://github.com/Asana/node-asana/releases/download/v0.17.2/asana-min.js"></script>
+    <script src="https://github.com/Asana/node-asana/releases/download/v0.17.2/asana-min.js"></script>
     <!-- Sidebar JS -->
-    <script type="text/javascript" src="assets/js/sidebar.js"></script>
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

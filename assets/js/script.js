@@ -1,46 +1,52 @@
 // Set values of second dropdown dependent on first dropdown selection
 function fetchOptions(event) {
-    var hardwareOptions = ["What hardware do yo need?", "MacBook Air", "MacBook Pro", "iPad", "Iphone"];
-    var softwareOptions = ["What software do yo need?", "LucidCharts", "Tableau Desktop", "Excel"];
-    var selectedOption = $('#requestType').val();
-
-    if (selectedOption == 'Hardware') {
-        options = hardwareOptions;
+    if (event.target.id == "requestType") {
+        if ($('#requestType').val() == 'Hardware') {
+            options = Object.keys(config.options.hardware);
+        } else {
+            options = Object.keys(config.options.software);
+        }
+        var target = '#requestCategory';
+        $('#whatIsNeeded').empty()
+        selectString = 'category';
     } else {
-        options = softwareOptions;
+        if ($('#requestType').val() == 'Hardware') {
+            options = config.options.hardware[$('#' + event.target.id).val()];
+        } else {
+            options = config.options.software[$('#' + event.target.id).val()];
+        }
+        var target = '#whatIsNeeded';
+        selectString = 'product';
     }
 
-    $('#whatIsNeeded').empty();
+    $(target).empty();
 
     $.each(options, function (i, p) {
         if (i == 0) {
-            $('#whatIsNeeded').append($('<option disabled selected></option>').val('').html(p));
+            $(target).append($('<option value disabled selected>Please select a ' + selectString + '</option>'));
+            $(target).append($('<option></option>').val(p).html(p));
         } else {
-            $('#whatIsNeeded').append($('<option></option>').val(p).html(p));
+            $(target).append($('<option></option>').val(p).html(p));
         }
     });
 }
-// LOAD OPTIONS NOT HARDCODED BUT JSON FILE
-// DOCUMENT IN README THAT THIS IS SPECIFIC FOR ONE QUEUE
-// USE TOOLTIP TO PREFERENCES
-// ADD 3RD DROPDOWN. SECOND CATEGORIES
 
 // Check if Web Storage is supported and fetch previously stored values if any
 if (typeof (Storage) !== "undefined") {
     if (localStorage.getItem("pat")) {
         $('#pat').val(localStorage.getItem("pat"));
     } else {
-        alert('Before using this app you need to set your preferences');
+        alert(config.alertStrings.noPreferences);
         var errorAlerted = true;
     }
 
     if (localStorage.getItem("projectID")) {
         $('#projectID').val(localStorage.getItem("projectID"));
     } else if (!errorAlerted) {
-        alert('Before using this app you need to set your preferences');
+        alert(config.alertStrings.noPreferences);
     }
 } else {
-    alert('Your browser is not supported');
+    alert(config.alertStrings.noWebStorage);
 }
 
 // Save preferences in Web Storage when changed
@@ -72,13 +78,13 @@ function createAsanaTask() {
     client.users.me().then(function (me) {
         var asanaWorkspace = me.workspaces[0].gid;
 
-        var body = "<body><strong>Requester: </strong>" + $('#emailaddress').val()
-            + "\n\n<strong>" + $('#requestType').find(":selected").val()
-            + " requested: </strong>" + $('#whatIsNeeded').find(":selected").val()
-            + "\n\n<strong>Urgency selected by requester: </strong>" + $('input[name=urgency]:checked').val() + "</body>";
+        var body = config.bodyStrings[0] + $('#emailaddress').val()
+            + config.bodyStrings[1] + $('#requestType').find(":selected").val()
+            + config.bodyStrings[2] + $('#whatIsNeeded').find(":selected").val()
+            + config.bodyStrings[3] + $('input[name=urgency]:checked').val() + config.bodyStrings[4];
 
         var newTask = {
-            name: $('#requestType').find(":selected").val() + " request",
+            name: $('#requestType').find(":selected").val() + config.task.nameString,
             projects: [$('#projectID').val()],
             html_notes: body,
             due_on: dueDate
@@ -93,7 +99,7 @@ function createAsanaTask() {
             console.log(error.message);
             console.log(error);
         });
-        
+
     }, function (error) {
         console.log("Error Connecting")
         console.log(error);
