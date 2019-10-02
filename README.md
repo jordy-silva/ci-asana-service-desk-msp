@@ -31,7 +31,7 @@ The solution proposed is an online minimalistic app consisting of a form that ca
 
 ### Wireframes
 For the skeleton element of the UX design of this project, the [balsamiq.cloud](https://balsamiq.cloud) tool was used to create the wireframes.
-![Screen Shot](assets/images/wire_main.jpg) ![Screen Shot](assets/images/wire_preferences.jpg)
+![Wireframe](assets/images/wire_main.png) ![Wireframe](assets/images/wire_preferences.png)
 
 ## Features
 The site is responsive and mobile first, even if due to the simplicity achieved on the User Interface there's little diffence between different screen sizes.
