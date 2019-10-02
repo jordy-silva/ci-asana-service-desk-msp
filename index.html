@@ -40,9 +40,11 @@
         <div>
             <form>
                 <input type="text" name="personalAccessToken" id="pat" class="form-control form-control-custom"
-                    placeholder="Asana Personal Access Token" oninput="savePreferences(event)" required />
+                    placeholder="Asana Personal Access Token" data-toggle="tooltip" data-placement="top"
+                    title="Asana Personal Access Token" oninput="savePreferences(event)" required />
                 <input type="text" name="projectID" id="projectID" class="form-control form-control-custom"
-                    placeholder="Target Project ID" oninput="savePreferences(event)" required />
+                    placeholder="Target Project ID" data-toggle="tooltip" data-placement="top"
+                    title="Target Asana Project ID" oninput="savePreferences(event)" required />
             </form>
         </div>
     </section>
@@ -91,28 +93,27 @@
                             <div class="row">
                                 <div class="col form-check">
                                     <input class="form-check-input" type="radio" name="urgency" id="urgency-high"
-                                        value="High">
+                                        value="High" required>
                                     <label class="form-check-label btn btn-danger btn-sm"
                                         for="urgency-high">High</label>
                                 </div>
                                 <div class="col form-check">
                                     <input class="form-check-input" type="radio" name="urgency" id="urgency-medium"
-                                        value="Medium">
+                                        value="Medium" required>
                                     <label class="form-check-label btn btn-warning btn-sm"
                                         for="urgency-medium">Medium</label>
                                 </div>
                                 <div class="col form-check">
                                     <input class="form-check-input" type="radio" name="urgency" id="urgency-low"
-                                        value="Low">
-                                    <label class="form-check-label btn btn-success btn-sm"
-                                        for="urgency-low">Low</label>
+                                        value="Low" checked required>
+                                    <label class="form-check-label btn btn-success btn-sm" for="urgency-low">Low</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-row text-center">
                             <div class="col">
-                                <button type="submit" class="btn btn-raush">Send Request</button>
+                                <button id="btn-submit" type="submit" class="btn btn-raush">Send Request</button>
                             </div>
                         </div>
                     </form>

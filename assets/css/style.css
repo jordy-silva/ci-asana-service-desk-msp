@@ -17,6 +17,11 @@ body {
     color: #fff;
     background-color: #FF7B7F;
     border-color: #FF7B7F;
+    box-shadow: none;
+}
+
+.btn-raush:focus {
+    box-shadow: none;
 }
 
 /*

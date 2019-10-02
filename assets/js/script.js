@@ -61,7 +61,7 @@ function setDueDate(priority) {
     if (priority == "High") {
         date.setDate(date.getDate() + 1);
     } else if (priority == "Medium") {
-        date.setDate(date.getDate() + 10);
+        date.setDate(date.getDate() + 7);
     } else {
         date.setDate(date.getDate() + 30);
     }
@@ -71,6 +71,7 @@ function setDueDate(priority) {
 
 // Create Asana Task
 function createAsanaTask() {
+    $("#btn-submit").html(`<img src="assets/images/ajax-loader.gif" alt="loading..." />`);
     var dueDate = setDueDate($('input[name=urgency]:checked').val());
 
     const client = Asana.Client.create().useAccessToken($('#pat').val());
@@ -94,6 +95,8 @@ function createAsanaTask() {
             alert('Submitted');
             $("#asanaForm").trigger("reset");
             $('#whatIsNeeded').empty();
+            $('#requestCategory').empty();
+            $("#btn-submit").html(`Send Request`);
         }, function (error) {
             console.log("Error " + error.status + " creating the Asana task");
             console.log(error.message);
@@ -106,3 +109,8 @@ function createAsanaTask() {
     });
     return false;
 }
+
+// Initialize tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
