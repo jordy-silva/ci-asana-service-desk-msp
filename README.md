@@ -11,20 +11,20 @@ The solution proposed is an online minimalistic app consisting of a form that ca
 ## UX
 ### User Stories
 
-- As employee, I want a to be able to quickly submit my requests at any time, so I can focus on my work
+- As employee, I want to be able to quickly submit my requests at any time, so I can focus on my work
     - **Feature:** Online form available 24x7
 
 - As employee, I want to easily know what options are available to me, so I can find what I need
-    -**Feature:** Intake form divided in 3 dropdowns, dependent between them and organized in categories
+    - **Feature:** Intake form divided in 3 dropdowns, dependent between them and organized in categories
 
 - As IT manager, I want to be able to configure to what Asana project tasks will go, so I can follow our processes
-    -**Feature:** Side bar to configure Asana Personal Access Token and Asana target project
+    - **Feature:** Side bar to configure Asana Personal Access Token and Asana target project
 
-- As IT staff, I want to clearly see all details of the request, so I can be effective on my work
-    -**Feature:** Created task includes type of request in the title and the body is rich formatted for easy reading
+- As IT staff, I want to clearly see all details of the request, so I can be effective in my work
+    - **Feature:** Created task includes type of request in the title and the body is rich formatted for easy reading
 
-- As IT staf, I want to see the deadline to complete the request according to the urgency selected by the submitter, so I can prioritize work
-    -**Feature:** The Asana task is created witth a due date dependant on the priority selected by the user. High: Tomorrow, Medium: Today + 7 days, Low: Today + 30 days
+- As IT staff, I want to see the deadline to complete the request according to the urgency selected by the submitter, so I can prioritize work
+    - **Feature:** The Asana task is created with a due date dependant on the priority selected by the user. High: Tomorrow, Medium: Today + 7 days, Low: Today + 30 days
 
 ### Example of task created by the app
 ![Screen Shot](assets/images/screenshot.jpg)
@@ -34,11 +34,11 @@ For the skeleton element of the UX design of this project, the [balsamiq.cloud](
 ![Wireframe](assets/images/wire_main.png) ![Wireframe](assets/images/wire_preferences.png)
 
 ## Features
-The site is responsive and mobile first, even if due to the simplicity achieved on the User Interface there's little diffence between different screen sizes.
+The site is responsive and mobile first, even if due to the simplicity achieved on the User Interface there's little difference between different screen sizes.
 
 A collapsible side bar has been implemented for IT managers to set the preferences for the app to work. Those preferences are stored on the client browser using Web Storage.
 
-Preferences values are auto-saved on input, so is not required for the user to pro-actively save them once entered.
+Preferences values are auto-saved upon input, so it is not required for the user to pro-actively save them once entered.
 
 ### Features Left to Implement
 #### Preferences panel should only be accessible to IT managers.
@@ -48,7 +48,7 @@ This could be achieved by implementing OAuth 2.0 authentication which is support
 For releasing this app to the public preferences should be stored in server side instead of user browser as customers shouldn't need to do any configuration, neither have access to those.
 
 #### Dropdown for Target Project ID
-The current preferences field **Target Project ID** could be a dropdown that auto-populates with the projects of the logged in admin (given the authentication feature has been implemented) so there's no need to find the project ID in the Asana app website.
+The current preferences field **Target Project ID** could be a dropdown that auto-populates with the projects of the admin that is logged in (given the authentication feature has been implemented) so there's no need to find the project ID in the Asana app website.
 
 ## Technologies Used
 
@@ -81,7 +81,7 @@ In order for the app to be functional you need to have an Asana account (free) a
 ### Deployment steps:
 1. In the GitHub repository page, click **Settings**
 2. Scroll down to the section **GitHub Pages**
-3. Select on the dropdown the branch to publish. Usually **master branch**
+3. Select from the dropdown the branch to publish. Usually **master branch**
 4. At the top of the **GitHub Pages** section you will find the URL of the deployed site
 
 ### Setting up Asana
@@ -113,7 +113,7 @@ You can clone this repository by typing `git clone https://github.com/jordy-silv
 - Text from the *Deployment* section of this document has been copied and adapted from Code Institute's [example project](https://github.com/Code-Institute-Solutions/StudentExampleProjectGradeFive/blob/master/README.md)
 
 ### Media
-- The loading image in the button after clicking it was generated here: http://www.ajaxload.info
+- The loading image shown inside the button after clicking it was created here: http://www.ajaxload.info
 
 ### Acknowledgements
 - StackOverflow was consulted for help with different challenges during the project.
