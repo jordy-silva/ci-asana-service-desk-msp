@@ -7,7 +7,7 @@ function fetchOptions(event) {
             options = Object.keys(config.options.software);
         }
         var target = '#requestCategory';
-        $('#whatIsNeeded').empty()
+        $('#whatIsNeeded').empty();
         selectString = 'category';
     } else {
         if ($('#requestType').val() == 'Hardware') {
@@ -124,5 +124,5 @@ function createAsanaTask() {
 
 // Initialize tooltips
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
+    $('[data-toggle="tooltip"]').tooltip();
+});

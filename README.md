@@ -112,9 +112,6 @@ You can clone this repository by typing `git clone https://github.com/jordy-silv
 ### Content
 - Text from the *Deployment* section of this document has been copied and adapted from Code Institute's [example project](https://github.com/Code-Institute-Solutions/StudentExampleProjectGradeFive/blob/master/README.md)
 
-### Media
-- The loading image shown inside the button after clicking it was created here: http://www.ajaxload.info
-
 ### Acknowledgements
 - StackOverflow was consulted for help with different challenges during the project.
 - Bootstrap documentation and examples have been used as base for some parts of the website.
