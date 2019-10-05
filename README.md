@@ -57,7 +57,7 @@ The current preferences field **Target Project ID** could be a dropdown that aut
 3. JavaScript
 3. Bootstrap (v4.3.1) https://getbootstrap.com
 4. jQuery (v.3.4.1)
-5. Asana node.js API adapted for browser
+5. Asana REST API
 
 
 ## Testing
@@ -104,7 +104,7 @@ In order for the app to be functional you need to have an Asana account (free) a
     - Enter the Asana project ID in the field **Target Asana Projec ID**
 
 ### To run locally
-You can clone this repository by typing `git clone https://github.com/jordy-silva/ci-asana-service-desk-msp.git` into your terminal, given that git is installed in your machine.
+You can clone this repository by typing `git clone https://github.com/jordy-silva/ci-asana-service-desk-msp.git` into your terminal, given that git is installed in your machine. You will need a webserver in your machine that points at index.html as main page.
 
 
 ## Credits

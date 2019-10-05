@@ -71,12 +71,20 @@ function setDueDate(priority) {
 
 // Create Asana Task
 function createAsanaTask() {
-    $("#btn-submit").html(`<img src="assets/images/ajax-loader.gif" alt="loading..." />`);
+    $('.alert').removeClass("alert-success alert-danger").empty();
+    $('#submitModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    $('#btnModal').prop('disabled', true);
+    $('#btnModal').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating Task...');
+
     var dueDate = setDueDate($('input[name=urgency]:checked').val());
 
     const client = Asana.Client.create().useAccessToken($('#pat').val());
 
     client.users.me().then(function (me) {
+        $("#asanaConnect").addClass("alert-success").html('<p>Successfully connected to Asana</p>');
         var asanaWorkspace = me.workspaces[0].gid;
 
         var body = config.bodyStrings[0] + $('#emailaddress').val()
@@ -92,20 +100,24 @@ function createAsanaTask() {
         };
 
         client.tasks.createInWorkspace(asanaWorkspace, newTask).then(function (response) {
-            alert('Submitted');
+            $("#asanaCreate").addClass("alert-success").html('<p>Asana Task ' + response.gid + ' successfully created</p>');
             $("#asanaForm").trigger("reset");
             $('#whatIsNeeded').empty();
             $('#requestCategory').empty();
-            $("#btn-submit").html(`Send Request`);
+            $('#btnModal').prop('disabled', false);
+            $('#btnModal').html('Close');
         }, function (error) {
-            console.log("Error " + error.status + " creating the Asana task");
-            console.log(error.message);
+            $("#asanaCreate").addClass("alert-danger").html('<p>Error ' + error.status + ' creating the Asana task: ' + error.message + '</p><hr><p class="mb-0">Make sure target project ID is correct</p>');
             console.log(error);
+            $('#btnModal').prop('disabled', false);
+            $('#btnModal').html('Close');
         });
 
     }, function (error) {
-        console.log("Error Connecting")
+        $("#asanaConnect").addClass("alert-danger").html('<p>Error ' + error.status + ' connecting to Asana: ' + error.message + '</p><hr><p class="mb-0">Make sure Asana Personal Access Token is correct and you are connected to a network</p>');
         console.log(error);
+        $('#btnModal').prop('disabled', false);
+        $('#btnModal').html('Close');
     });
     return false;
 }

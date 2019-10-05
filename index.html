@@ -16,10 +16,8 @@
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
     <!-- Font Awesome JS -->
     <script src="https://kit.fontawesome.com/8d7193c60e.js" crossorigin="anonymous"></script>
-
     <!-- App config file -->
     <script src="assets/js/config.js"></script>
 
@@ -58,10 +56,10 @@
 
     <!-- Asana Task Form -->
     <section class="container">
-        <div class="row bg-color-contact">
+        <div class="row">
             <div class="col">
-                <h3 class="contact-heading uppercase text-center">Asana Service Desk</h3>
-                <h5 class="uppercase text-center">Please fill in your request</h5>
+                <h2 class="page-heading text-center">Asana Service Desk</h2>
+                <h5 class="text-center">Please fill in your request</h5>
                 <div class="center-form">
                     <form id="asanaForm" onsubmit="return createAsanaTask()">
 
@@ -128,6 +126,25 @@
 
     <!-- Overlay for sidebar -->
     <div class="overlay"></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="submitModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Asana Service Desk</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="asanaConnect" class="alert" role="alert"></div>
+                    <div id="asanaCreate" class="alert" role="alert"></div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="btnModal" class="btn btn-raush" data-dismiss="modal" type="button" disabled>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
